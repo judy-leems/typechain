@@ -1,4 +1,4 @@
-import * as CryptoJs from "crypto-js";
+import * as CryptoJS from "crypto-js";
 class Block {
   static calculateBlockHash = (
     index: number, 
@@ -6,7 +6,7 @@ class Block {
     timestamp:number, 
     data: string
   ) : string => 
-    CryptoJs.SHA256(index + previousHash + timestamp + data).toString();
+  CryptoJS.SHA256(index + previousHash + timestamp + data).toString();
 
   static validateStructure = (aBlock: Block) : boolean => 
     typeof aBlock.index === "number" && 
@@ -75,7 +75,7 @@ const getHashforBlock = (aBlock: Block): string =>
   );
 
 const isBlockValid = (candidateBlock: Block, previousBlock: Block): boolean => {
-  if(Block.validateStructure(candidateBlock)) {
+  if(!Block.validateStructure(candidateBlock)) {
     return false;
   } else if(previousBlock.index + 1 !== candidateBlock.index) {
     return false;
